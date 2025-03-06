@@ -1,8 +1,11 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import ContainerBox from './generics/ContainerBox'
 import Link from 'next/link'
 import logo from '@/assets/images/logo.png'
 import Image from 'next/image'
+import Hamburger from './generics/Hamburger'
 
 const navBarLinks = [
   {
@@ -24,6 +27,8 @@ const navBarLinks = [
 ]
 
 const NavBar = () => {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
   return (
     <nav className="navbar">
       <ContainerBox>
@@ -45,6 +50,9 @@ const NavBar = () => {
                 </Link>
               </span>
             ))}
+          </div>
+          <div className="md:hidden block">
+            <Hamburger menuOpenState={menuOpen} setMenuOpenState={setMenuOpen} />
           </div>
         </div>
       </ContainerBox>
