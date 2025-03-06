@@ -1,18 +1,23 @@
 import React from 'react'
 import './styles.css'
+import { inter } from 'fonts'
+import NavBar from '@/components/frontend/NavBar'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Dripta Senapati',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en">
+    <html lang="en" className={`dark ${inter.variable}`}>
       <body>
-        <main>{children}</main>
+        <main>
+          <NavBar />
+          {children}
+        </main>
       </body>
     </html>
   )

@@ -7,7 +7,8 @@ import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'
 
 import { importMap } from './admin/importMap.js'
-import './custom.scss'
+import './custom.css'
+import { inter } from 'fonts'
 
 type Args = {
   children: React.ReactNode
@@ -24,7 +25,7 @@ const serverFunction: ServerFunctionClient = async function (args) {
 
 const Layout = ({ children }: Args) => (
   <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
+    <div className={`${inter.variable}`}>{children}</div>
   </RootLayout>
 )
 
