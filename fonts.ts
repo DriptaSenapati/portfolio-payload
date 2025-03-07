@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google'
+import { Instrument_Serif, Inter } from 'next/font/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -6,4 +6,11 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-export { inter }
+const instrumentSerif = Instrument_Serif({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-instrument-serif',
+})
+
+export { inter, instrumentSerif }

@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.css'
-import { inter } from 'fonts'
+import { instrumentSerif, inter } from 'fonts'
 import NavBar from '@/components/frontend/NavBar'
 
 export const metadata = {
@@ -12,11 +12,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en" className={`dark ${inter.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${instrumentSerif.variable}`}>
       <body>
         <main>
           <NavBar />
           {children}
+          {/* <div className="h-[20000px]"></div> */}
         </main>
       </body>
     </html>

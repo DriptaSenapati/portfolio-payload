@@ -5,9 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-inter), sans-serif;
+  --font-sans: var(--font-inter);
   --color-background-2: rgba(255, 255, 255, 0.6);
   --color-white-90: rgba(255, 255, 255, 0.9);
+  --color-light-black: #141414;
+  --font-instrument: var(--font-instrument-serif);
 }
 
 :root {
@@ -159,10 +161,6 @@
 }
 
 @layer components {
-  .navbar {
-    @apply fixed top-0 w-full h-[var(--navbar-height)];
-  }
-
   .hero {
     height: calc(100vh - var(--navbar-height));
     margin-top: var(--navbar-height);
@@ -181,6 +179,7 @@
     object-fit: cover;
     mix-blend-mode: screen;
     /* width: fit-content; */
+    @apply max-md:transform-none max-md:-left-[10%] max-md:w-full;
   }
 }
 

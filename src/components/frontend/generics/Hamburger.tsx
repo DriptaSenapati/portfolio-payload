@@ -41,7 +41,7 @@ const Hamburger = ({ menuOpenState, setMenuOpenState }: Props) => {
       onMouseLeave={() => setMouseEntered(false)}
     >
       <div
-        className="absolute top-0 left-0 w-full h-full bg-[#141414] scale-0 opacity-0"
+        className="absolute top-0 left-0 w-full h-full bg-light-black scale-0 opacity-0"
         id="bg-hamburger"
       ></div>
       <div
