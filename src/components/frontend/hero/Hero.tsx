@@ -12,6 +12,8 @@ import { CiFacebook } from 'react-icons/ci'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
+//TODO: implement SWR and payload functionality
+
 const Hero = () => {
   const [init, setInit] = useState(false)
 
