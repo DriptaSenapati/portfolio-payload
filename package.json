@@ -21,7 +21,9 @@
     "@payloadcms/payload-cloud": "latest",
     "@payloadcms/richtext-lexical": "latest",
     "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-tooltip": "^1.1.8",
     "@tailwindcss/postcss": "^4.0.9",
+    "@tsparticles/basic": "^3.8.1",
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "class-variance-authority": "^0.7.1",
@@ -39,8 +41,7 @@
     "sharp": "0.32.6",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.12",
-    "tailwindcss-animate": "^1.0.7",
-    "tsparticles": "^3.8.1"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

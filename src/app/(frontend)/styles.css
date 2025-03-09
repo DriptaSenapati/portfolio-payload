@@ -4,12 +4,36 @@
 
 @custom-variant dark (&:is(.dark *));
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  width: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.76);
+  border-radius: 5px;
+}
+
 @theme {
   --font-sans: var(--font-inter);
   --color-background-2: rgba(255, 255, 255, 0.6);
   --color-white-90: rgba(255, 255, 255, 0.9);
   --color-light-black: #141414;
   --font-instrument: var(--font-instrument-serif);
+  --color-button-border: #292b2b;
 }
 
 :root {
@@ -126,6 +150,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    -webkit-tap-highlight-color: transparent;
   }
   button {
     @apply cursor-pointer;
@@ -181,6 +206,31 @@
     /* width: fit-content; */
     @apply max-md:transform-none max-md:-left-[10%] max-md:w-full;
   }
+
+  .section_border {
+    @apply h-[4px] w-full;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 1) 100%);
+  }
+
+  .about-grid {
+    background: url('/grid_bg.jpg') no-repeat center center;
+    background-size: cover;
+  }
+
+  .about-grid-overlay {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .button {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(rgb(20, 20, 20) 0%, rgba(255, 255, 255, 0.07) 100%);
+  }
 }
 
 @utility text-p1-semibold {
@@ -213,4 +263,23 @@
   line-height: 1.3em;
   font-weight: 400;
   font-style: italic;
+}
+
+@utility button-radial {
+  background: radial-gradient(
+    20.7% 50% at 50% 100%,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@utility button-border {
+  border-color: var(--color-button-border);
+  border-width: 1px;
+  border-style: solid;
+  backdrop-filter: blur(5px);
+  box-shadow:
+    rgba(0, 0, 0, 0.68) 0px -0.48175px 0.48175px -1.25px inset,
+    rgba(0, 0, 0, 0.596) 0px -1.83083px 1.83083px -2.5px inset,
+    rgba(0, 0, 0, 0.235) 0px -8px 8px -3.75px inset;
 }

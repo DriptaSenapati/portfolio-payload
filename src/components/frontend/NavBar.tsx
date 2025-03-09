@@ -63,7 +63,7 @@ const NavBar = () => {
     >
       <div className="h-[var(--navbar-height)]">
         <ContainerBox>
-          <div className={`flex justify-between items-center h-full px-10`}>
+          <div className={`flex justify-between items-center h-full max-md:px-10`}>
             <div className="flex items-center">
               <Link href="/">
                 <Image src={logo.src} alt="Logo" width={40} height={40} />
