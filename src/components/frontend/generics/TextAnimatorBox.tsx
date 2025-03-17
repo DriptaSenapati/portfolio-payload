@@ -4,11 +4,12 @@ type Props = {
   sentence: string
   textDivRef: React.RefObject<HTMLDivElement | null>
   textSpanRef: React.RefObject<(HTMLDivElement | null)[]>
+  className?: string
 }
 
-const TextAnimatorBox = ({ sentence, textDivRef, textSpanRef }: Props) => {
+const TextAnimatorBox = ({ sentence, textDivRef, textSpanRef, className }: Props) => {
   return (
-    <div ref={textDivRef}>
+    <div ref={textDivRef} className={className}>
       {sentence.split('<br/>').map((line, index) => (
         <div
           key={index}

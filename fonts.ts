@@ -2,6 +2,7 @@ import { Instrument_Serif, Inter } from 'next/font/google'
 
 const inter = Inter({
   subsets: ['latin'],
+  style: ['italic', 'normal'],
   display: 'swap',
   variable: '--font-inter',
 })

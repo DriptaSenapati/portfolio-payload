@@ -100,7 +100,7 @@ const Hero = () => {
         {init && <Particles className="h-full" options={particleConfig} />}
       </div>
       <ContainerBox className="relative">
-        <div className="absolute left-0 top-[50%] transform translate-y-[-50%] max-md:px-5">
+        <div className="absolute left-0 top-[50%] transform translate-y-[-50%] max-xl:px-5">
           <div className="flex flex-row gap-4" ref={nameRef}>
             <h1 className="inline-block font-medium">Dripta</h1>
             <h1 className="inline-block font-medium font-instrument italic text-background-2">
