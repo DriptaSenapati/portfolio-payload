@@ -242,7 +242,7 @@
   }
 
   .skill-right-box {
-    @apply absolute right-[-22%] max-xl:right-[-20%] min-h-[115%] max-h-[50vh] min-w-[300px] w-[20vw] bg-light-black rounded-2xl p-3.5 space-y-7 top-[-5%];
+    @apply absolute right-[-22%] max-lg:right-[-30%] max-xl:right-[-25%] min-h-[115%] max-h-[50vh] min-w-[350px] w-[20vw] bg-light-black rounded-2xl p-3.5 space-y-7 top-[-5%];
     --angle: 300deg;
   }
 
@@ -282,7 +282,7 @@
   }
 
   .skill-left-box {
-    @apply absolute left-[-22%] max-xl:left-[-20%] min-h-[115%] max-h-[50vh] min-w-[300px] w-[20vw] bg-light-black rounded-2xl p-3.5 space-y-7 top-[-5%];
+    @apply absolute left-[-22%] max-lg:left-[-30%] max-xl:left-[-25%] min-h-[115%] max-h-[50vh] min-w-[350px] w-[20vw] bg-light-black rounded-2xl p-3.5 space-y-7 top-[-5%];
   }
 
   .skill-left-box::after {
@@ -321,6 +321,18 @@
       rgba(255, 255, 255, 0) 20%,
       rgba(255, 255, 255, 0) 80%,
       rgba(20, 20, 20, 1) 100%
+    );
+  }
+
+  .project-carousel-gradient {
+    background: var(--background);
+    background: linear-gradient(
+      90deg,
+      var(--background) 0%,
+      rgba(2, 4, 9, 0) 10%,
+      rgba(2, 4, 9, 0) 50%,
+      rgba(2, 4, 9, 0) 90%,
+      var(--background) 100%
     );
   }
 }
