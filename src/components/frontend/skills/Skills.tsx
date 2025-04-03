@@ -66,7 +66,7 @@ const Skills = () => {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden flex justify-center items-start py-[150px] max-sm:py-[40px]"
+      className="min-h-screen relative overflow-hidden flex justify-center items-start py-[150px] max-md:py-[100px]"
       id="skill-section"
     >
       <div className="w-full space-y-[120px] max-lg:hidden">

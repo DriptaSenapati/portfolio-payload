@@ -48,30 +48,30 @@ const projectDetails = [
     description:
       'Have built a website for COVID-19 in India that gives flexibility to users to see the data for varying filters and also some graphical analyses are also done in website.',
   },
-  {
-    name: 'SQL & Database Design A-Z™: Learn MS SQL Server + PostgreSQL',
-    technology: ['SQL', 'SQL Server', 'PostgreSQL'],
-    type: 'certificate',
-    imageList: {
-      primary: projectImage.src,
-      secondary: projectImageHover.src,
-    },
-    certficate: 'https://ude.my/UC-395d6821-7495-4233-a07d-5fbbb959926a',
-    description:
-      'Have built a website for COVID-19 in India that gives flexibility to users to see the data for varying filters and also some graphical analyses are also done in website.',
-  },
-  {
-    name: 'SQL & Database Design A-Z™: Learn MS SQL Server + PostgreSQL',
-    technology: ['SQL', 'SQL Server', 'PostgreSQL'],
-    type: 'certificate',
-    imageList: {
-      primary: projectImage.src,
-      secondary: projectImageHover.src,
-    },
-    certficate: 'https://ude.my/UC-395d6821-7495-4233-a07d-5fbbb959926a',
-    description:
-      'Have built a website for COVID-19 in India that gives flexibility to users to see the data for varying filters and also some graphical analyses are also done in website.',
-  },
+  // {
+  //   name: 'SQL & Database Design A-Z™: Learn MS SQL Server + PostgreSQL',
+  //   technology: ['SQL', 'SQL Server', 'PostgreSQL'],
+  //   type: 'certificate',
+  //   imageList: {
+  //     primary: projectImage.src,
+  //     secondary: projectImageHover.src,
+  //   },
+  //   certficate: 'https://ude.my/UC-395d6821-7495-4233-a07d-5fbbb959926a',
+  //   description:
+  //     'Have built a website for COVID-19 in India that gives flexibility to users to see the data for varying filters and also some graphical analyses are also done in website.',
+  // },
+  // {
+  //   name: 'SQL & Database Design A-Z™: Learn MS SQL Server + PostgreSQL',
+  //   technology: ['SQL', 'SQL Server', 'PostgreSQL'],
+  //   type: 'certificate',
+  //   imageList: {
+  //     primary: projectImage.src,
+  //     secondary: projectImageHover.src,
+  //   },
+  //   certficate: 'https://ude.my/UC-395d6821-7495-4233-a07d-5fbbb959926a',
+  //   description:
+  //     'Have built a website for COVID-19 in India that gives flexibility to users to see the data for varying filters and also some graphical analyses are also done in website.',
+  // },
 ]
 
 const Projects = () => {
@@ -101,7 +101,7 @@ const Projects = () => {
     },
   ]
   return (
-    <div className="relative overflow-hidden py-[100px]">
+    <div className="relative overflow-hidden py-[100px]" id="projects">
       <div id="project-content">
         <div id="title-content" className="space-y-5">
           <div className="flex gap-3 items-center justify-center">

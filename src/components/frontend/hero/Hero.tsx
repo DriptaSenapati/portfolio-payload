@@ -88,7 +88,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <div className="hero">
+    <div className="hero" id="#">
       <Image
         src={'/highlight.jpg'}
         alt="Highlight"
