@@ -8,24 +8,11 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import ContainerBox from '../generics/ContainerBox'
+import { Job } from '@/payload-types'
+import moment from 'moment'
 
 type Props = {
-  experienceList: ({
-    company: string
-    startMonth: string
-    designation: string
-    workDescription: string
-    location: string
-  } & (
-    | {
-        isCurrent: false
-        endMonth: string
-      }
-    | {
-        isCurrent: true
-        endMonth?: string
-      }
-  ))[]
+  experienceList: Job[] | undefined
 }
 
 const ExperienceAccordian = ({ experienceList }: Props) => {
@@ -37,26 +24,28 @@ const ExperienceAccordian = ({ experienceList }: Props) => {
           defaultValue={['0', '1', '2']}
           className="border-light-black border-[2px] rounded-2xl overflow-hidden"
         >
-          {experienceList.map((experience, idx) => (
-            <AccordionItem value={`${idx}`} key={idx}>
-              <AccordionTrigger
-                className="flex justify-between px-[15px] items-center hover:no-underline rounded-none  data-[state=open]:bg-muted hover:bg-muted max-md:flex-col max-md:items-start max-md:pointer-events-none"
-                chevronClassName="max-md:hidden"
-              >
-                <p className="flex-1 text-p1 text-white">{experience.company}</p>
-                <div className="flex-1 text-p1 text-white">{experience.location}</div>
-                <p className="flex-1 text-p1 text-white text-end">{`${experience.startMonth} - ${experience.isCurrent ? 'Present' : `${experience.endMonth}`}`}</p>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="p-[15px] rounded-2xl text-background-2 w-[90%]">
-                  <div className="space-y-1">
-                    <div className="font-bold text-xl ">{experience.designation}</div>
+          {experienceList &&
+            experienceList.length > 0 &&
+            experienceList.map((experience, idx) => (
+              <AccordionItem value={`${idx}`} key={idx}>
+                <AccordionTrigger
+                  className="flex justify-between px-[15px] items-center hover:no-underline rounded-none  data-[state=open]:bg-muted hover:bg-muted max-md:flex-col max-md:items-start max-md:pointer-events-none"
+                  chevronClassName="max-md:hidden"
+                >
+                  <p className="flex-1 text-p1 text-white">{experience.company}</p>
+                  <div className="flex-1 text-p1 text-white">{experience.location}</div>
+                  <p className="flex-1 text-p1 text-white text-end">{`${moment(experience.startMonth).format('MMM-yyyy')} - ${experience.isCurrent ? 'Present' : `${moment(experience.endMonth).format('MMM-yyyy')}`}`}</p>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="p-[15px] rounded-2xl text-background-2 w-[90%]">
+                    <div className="space-y-1">
+                      <div className="font-bold text-xl ">{experience.designation}</div>
+                    </div>
+                    <p className="mt-5">{experience.workDescription}</p>
                   </div>
-                  <p className="mt-5">{experience.workDescription}</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
         </Accordion>
       </div>
     </ContainerBox>

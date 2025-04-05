@@ -1,55 +1,20 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import ExperienceAccordian from './ExperienceAccordian'
-
-const experienceList: ({
-  company: string
-  startMonth: string
-  designation: string
-  workDescription: string
-  location: string
-} & (
-  | {
-      isCurrent: false
-      endMonth: string
-    }
-  | {
-      isCurrent: true
-      endMonth?: string
-    }
-))[] = [
-  {
-    company: 'HSBC',
-    designation: 'Senior Analyst',
-    isCurrent: true,
-    startMonth: 'Sept-2022',
-    workDescription: 'Development of Detection model of fraud from transaction monitoring',
-    location: 'Kolkata - West Bengal',
-  },
-  {
-    company: 'WNS Global Services',
-    designation: 'Sr. Associate',
-    isCurrent: false,
-    startMonth: 'Feb-2021',
-    endMonth: 'Sep-2022',
-    workDescription:
-      'Develop proof of concepts and scalable solutions in Text Mining, NLP, Video and image analytics to solve business problems',
-    location: 'Delhi-Gurgaon',
-  },
-  {
-    company: 'Objectsol Technologies',
-    designation: 'Data Scientist',
-    isCurrent: false,
-    startMonth: 'Feb-2020',
-    endMonth: 'Feb-2021',
-    workDescription:
-      'It is a software based company, successfuly building apps for Android, iOS,IpTV. I have to develop backend algorithm which are based on some mathematical models and some Machine Learning algorithm',
-    location: 'Kolkata - West Bengal',
-  },
-]
+import useSWR from 'swr'
+import { job_fetch_key } from '@/lib/swrKeys'
+import { getJobs } from '@/actions/jobActions'
 
 const Experience = () => {
+  const { data: experienceList, error } = useSWR(job_fetch_key, getJobs)
+
+  useEffect(() => {
+    if (error) {
+      console.error('Error fetching experience list:', error)
+    }
+  }, [error])
+
   return (
     <div className="relative py-[100px] overflow-hidden" id="experience">
       <div className="" id="experience-content">

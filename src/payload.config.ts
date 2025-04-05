@@ -9,6 +9,8 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Jobs } from './collections/Jobs'
+import { Reviews } from './collections/Reviews'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,8 +22,23 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     theme: 'dark',
+    components: {
+      graphics: {
+        Logo: './components/PayloadLogo',
+        Icon: './components/PayloadLogo',
+      },
+    },
+    meta: {
+      icons: [
+        {
+          url: './logo.png',
+          fetchPriority: 'high',
+          sizes: '16x16',
+        },
+      ],
+    },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Jobs, Reviews],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
