@@ -1,12 +1,13 @@
 import React from 'react'
 import './styles.css'
 import { instrumentSerif, inter } from 'fonts'
-import NavBar from '@/components/frontend/NavBar'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import LenisScrollProvider from '@/components/LenisScrollProvider'
 import { ViewTransitions } from 'next-view-transitions'
 import { Metadata } from 'next'
 import { getGlobals } from '@/actions/globalActions'
+import { Toaster } from '@/components/ui/sonner'
+import { Analytics } from '@vercel/analytics/react'
 
 export async function generateMetadata(): Promise<Metadata> {
   const getGlobalData = await getGlobals()
@@ -38,12 +39,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <LenisScrollProvider>
             <TooltipProvider delayDuration={700} disableHoverableContent>
               <main>
-                <NavBar />
                 {children}
                 {/* <div className="h-[20000px]"></div> */}
               </main>
             </TooltipProvider>
           </LenisScrollProvider>
+          <Analytics />
+          <Toaster richColors />
         </body>
       </html>
     </ViewTransitions>
