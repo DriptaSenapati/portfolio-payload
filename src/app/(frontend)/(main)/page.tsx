@@ -39,6 +39,8 @@ const fetchFallbackData = async () => {
   }
 }
 
+export const revalidate = 60
+
 const Home = async () => {
   const { fallback } = await fetchFallbackData()
   return (
