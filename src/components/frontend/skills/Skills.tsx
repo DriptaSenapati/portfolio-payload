@@ -57,6 +57,14 @@ const Skills = () => {
         '--angle': '120deg',
         duration: 1.2,
       })
+      .to(
+        '.skill-left-box',
+        {
+          '--angle': '210deg',
+          duration: 1.2,
+        },
+        '-=100%',
+      )
   })
 
   // useGSAP(() => {
@@ -256,11 +264,7 @@ const Skills = () => {
             <p className="text-p1 italic">Explore my skills</p>
             <div className="w-[69px] h-[1px] header-gradient-right"></div>
           </div>
-          <p className="text-p1">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, expedita dolor
-            blanditiis in nulla cum amet quod repudiandae fuga reiciendis, officia aperiam
-            perferendis vero quia minus! Nobis facilis quasi itaque.
-          </p>
+          <p className="text-p1">{appConfig?.skill.skill_intro}</p>
           {skillList && skillList.length > 0 && (
             <>
               <div className="flex justify-between items-center px-[8px] gap-5 max-sm:flex-col mt-[50px]">

@@ -302,17 +302,23 @@
   }
 
   .skill-left-box {
+    --angle: 30deg;
     @apply absolute left-[-22%] max-lg:left-[-30%] max-xl:left-[-25%] min-h-[115%] max-h-[50vh] min-w-[350px] w-[20vw] bg-light-black rounded-2xl p-3.5 space-y-7 top-[-5%];
   }
 
   .skill-left-box::after {
     content: '';
     @apply absolute w-[100.5%] h-[100.5%] rounded-2xl;
-    background-image: conic-gradient(from 30deg, rgba(255, 255, 255, 0.9) 10%, transparent 15%);
+    background-image: conic-gradient(
+      from var(--angle),
+      rgba(255, 255, 255, 0.9) 10%,
+      transparent 15%
+    );
     top: -0.25%;
     left: -0.25%;
     z-index: -1;
     transform-origin: 50% 50%;
+    transform: rotate(180deg);
     pointer-events: none;
     filter: blur(5px);
     opacity: 0.5;
@@ -321,7 +327,11 @@
   .skill-left-box::before {
     content: '';
     @apply absolute w-[100.5%] h-[100.5%] rounded-2xl;
-    background-image: conic-gradient(from 210deg, rgba(255, 255, 255, 0.9) 10%, transparent 15%);
+    background-image: conic-gradient(
+      from var(--angle),
+      rgba(255, 255, 255, 0.9) 10%,
+      transparent 15%
+    );
     top: -0.25%;
     left: -0.25%;
     z-index: -1;
