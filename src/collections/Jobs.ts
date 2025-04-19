@@ -4,6 +4,7 @@ export const Jobs: CollectionConfig = {
   slug: 'jobs',
   admin: {
     useAsTitle: 'company',
+    hideAPIURL: true,
   },
   fields: [
     {

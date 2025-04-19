@@ -4,6 +4,7 @@ export const Reviews: CollectionConfig = {
   slug: 'reviews',
   admin: {
     useAsTitle: 'name',
+    hideAPIURL: true,
   },
   fields: [
     {
@@ -28,6 +29,11 @@ export const Reviews: CollectionConfig = {
       type: 'textarea',
       label: 'Feedback',
       required: true,
+      admin: {
+        components: {
+          Field: './components/payload/CustomTextArea',
+        },
+      },
     },
     {
       name: 'workedAs',

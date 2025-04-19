@@ -5,6 +5,10 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@theme {
+  --color-background-2: rgba(255, 255, 255, 0.6);
+}
+
 @layer payload-default {
   :root {
     --font-body: 'Inter', sans-serif;

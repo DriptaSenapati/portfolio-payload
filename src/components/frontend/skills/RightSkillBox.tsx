@@ -5,12 +5,10 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carouse
 import { ItemStyles, Rating, Star } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import AutoScroll from 'embla-carousel-auto-scroll'
+import { Skill } from '@/payload-types'
 
 type Props = {
-  skillList: {
-    name: string
-    rating: number
-  }[]
+  skillList: Skill[]
 }
 
 const customStarStyles: ItemStyles = {
@@ -43,18 +41,18 @@ const RightSkillBox = ({ skillList }: Props) => {
           {skillList.map((v, index) => (
             <CarouselItem
               key={index}
-              className={`pt-1.5 ${skillList.length > 7 ? 'basis-1/6' : 'basis-1/5'}`}
+              className={`pt-1.5 ${skillList.length > 7 ? 'basis-1/6' : 'basis-1/4'}`}
             >
               <div className="w-full px-[18px] py-[12px] flex justify-between items-center bg-background rounded-[12px]">
-                <p>{v.name}</p>
+                <p>{v.skill}</p>
                 <div className="flex justify-center items-center gap-1">
                   <Rating
-                    value={v.rating}
+                    value={v.skill_rating}
                     itemStyles={customStarStyles}
                     readOnly
                     style={{ maxWidth: 100 }}
                   />
-                  <p className="text-sm">{v.rating}</p>
+                  <p className="text-sm">{v.skill_rating}</p>
                 </div>
               </div>
             </CarouselItem>

@@ -15,19 +15,19 @@ gsap.registerPlugin(useGSAP)
 const navBarLinks = [
   {
     name: 'Home',
-    url: '#',
+    url: './#home',
   },
   {
     name: 'About',
-    url: '#about',
+    url: './#about',
   },
   {
     name: 'Experience',
-    url: '#experience',
+    url: './#experience',
   },
   {
     name: 'Projects',
-    url: '#projects',
+    url: './#projects',
   },
 ]
 
@@ -63,7 +63,7 @@ const NavBar = () => {
     >
       <div className="h-[var(--navbar-height)]">
         <ContainerBox>
-          <div className={`flex justify-between items-center h-full max-md:px-10`}>
+          <div className={`flex justify-between items-center h-full`}>
             <div className="flex items-center">
               <Link href="/">
                 <Image src={logo.src} alt="Logo" width={40} height={40} />

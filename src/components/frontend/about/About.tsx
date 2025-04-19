@@ -9,13 +9,18 @@ import { useGSAP } from '@gsap/react'
 import Button from '../generics/Button'
 import { PiContactlessPaymentDuotone } from 'react-icons/pi'
 import Image from 'next/image'
-import aboutImage from '@/assets/images/picture_about.jpg'
+import useSWR from 'swr'
+import { global_fetch_key } from '@/lib/swrKeys'
+import { getGlobals } from '@/actions/globalActions'
+import { Media } from '@/payload-types'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const About = () => {
   const sentenceContainerRef = useRef<HTMLDivElement>(null)
   const wordContainerRef = useRef<(HTMLDivElement | null)[]>([])
+
+  const { data: appConfig } = useSWR(global_fetch_key, getGlobals)
 
   useGSAP(() => {
     if (sentenceContainerRef.current && wordContainerRef.current) {
@@ -70,30 +75,34 @@ const About = () => {
                   myself
                 </h2>
               </div>
-              <div className="h-2.5"></div>
+              <div className="h-5"></div>
               <TextAnimatorBox
-                sentence={`Hi, I’m Dripta Senapati, a passionate web designer with a mission to bring creative ideas to life through exceptional design. `}
+                sentence={appConfig?.about.about_myself as string}
                 textDivRef={sentenceContainerRef}
                 textSpanRef={wordContainerRef}
               />
-              <div className="h-10 max-md:h-5"></div>
-              <Button className="text-background-2 hover:text-white group" id="about-button">
-                <div className="flex gap-1.5 items-center justify-center">
-                  <PiContactlessPaymentDuotone className="text-3xl transition-all duration-[0.25s]" />
-                  <span className="text-p1 group-hover:text-white transition-all duration-[0.25s]">
-                    Contact Me
-                  </span>
-                </div>
-              </Button>
+              {appConfig?.about.show_contant_button && (
+                <>
+                  <div className="h-10 max-md:h-5"></div>
+                  <Button className="text-background-2 hover:text-white group" id="about-button">
+                    <div className="flex gap-1.5 items-center justify-center">
+                      <PiContactlessPaymentDuotone className="text-3xl transition-all duration-[0.25s]" />
+                      <span className="text-p1 group-hover:text-white transition-all duration-[0.25s]">
+                        Contact Me
+                      </span>
+                    </div>
+                  </Button>
+                </>
+              )}
             </div>
             <div className="w-[450px] h-[450px] rounded-[50%] relative bg-light-black max-xl:w-[350px] max-xl:h-[350px] max-md:w-[250px] max-md:h-[250px]">
               <div className="absolute w-[100%] h-[200px] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-white-60 rounded-[100%] blur-[40px] max-xl:h-[200px] max-md:h-[100px]"></div>
               <div className="w-[98%] h-[98%] rounded-[50%] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden z-[2]">
                 <Image
                   alt="about image"
-                  src={aboutImage.src}
-                  width={aboutImage.width}
-                  height={aboutImage.height}
+                  src={(appConfig?.about.about_image as Media).url as string}
+                  width={(appConfig?.about.about_image as Media).width as number}
+                  height={(appConfig?.about.about_image as Media).height as number}
                   className="object-contain max-w-[500px] h-auto w-[100%] hover:scale-[1.1] transition-all duration-[0.25s]"
                 />
               </div>

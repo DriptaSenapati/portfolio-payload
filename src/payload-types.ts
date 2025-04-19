@@ -70,6 +70,8 @@ export interface Config {
     media: Media;
     jobs: Job;
     reviews: Review;
+    projects: Project;
+    skills: Skill;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -80,6 +82,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    skills: SkillsSelect<false> | SkillsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -87,8 +91,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    appConfig: AppConfig;
+  };
+  globalsSelect: {
+    appConfig: AppConfigSelect<false> | AppConfigSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -151,6 +159,16 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    Card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -183,6 +201,41 @@ export interface Review {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  name: string;
+  technology?:
+    | {
+        technology: string;
+        id?: string | null;
+      }[]
+    | null;
+  type: 'project' | 'certificate';
+  imageList: {
+    primary: string | Media;
+    secondary?: (string | null) | Media;
+  };
+  certficate?: string | null;
+  projectLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: string;
+  skill: string;
+  skill_type: 'data_science' | 'web_development';
+  skill_rating: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -203,6 +256,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'reviews';
         value: string | Review;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: string | Project;
+      } | null)
+    | ({
+        relationTo: 'skills';
+        value: string | Skill;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -278,6 +339,20 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        Card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -303,6 +378,41 @@ export interface ReviewsSelect<T extends boolean = true> {
   rating?: T;
   feedback?: T;
   workedAs?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  name?: T;
+  technology?:
+    | T
+    | {
+        technology?: T;
+        id?: T;
+      };
+  type?: T;
+  imageList?:
+    | T
+    | {
+        primary?: T;
+        secondary?: T;
+      };
+  certficate?: T;
+  projectLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  skill?: T;
+  skill_type?: T;
+  skill_rating?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -337,6 +447,66 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "appConfig".
+ */
+export interface AppConfig {
+  id: string;
+  home: {
+    home_title: string;
+    resume_doc: string | Media;
+    connect_links: {
+      linkedin_link: string;
+      github_link: string;
+      facebook_link: string;
+    };
+  };
+  about: {
+    about_myself: string;
+    show_contant_button: boolean;
+    about_image: string | Media;
+  };
+  skill: {
+    skill_intro: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "appConfig_select".
+ */
+export interface AppConfigSelect<T extends boolean = true> {
+  home?:
+    | T
+    | {
+        home_title?: T;
+        resume_doc?: T;
+        connect_links?:
+          | T
+          | {
+              linkedin_link?: T;
+              github_link?: T;
+              facebook_link?: T;
+            };
+      };
+  about?:
+    | T
+    | {
+        about_myself?: T;
+        show_contant_button?: T;
+        about_image?: T;
+      };
+  skill?:
+    | T
+    | {
+        skill_intro?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

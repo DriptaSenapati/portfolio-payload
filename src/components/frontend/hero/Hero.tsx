@@ -16,6 +16,10 @@ import { IoIosArrowDown } from 'react-icons/io'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import useSWR from 'swr'
+import { global_fetch_key } from '@/lib/swrKeys'
+import { getGlobals } from '@/actions/globalActions'
+import { Media } from '@/payload-types'
 
 gsap.registerPlugin(useGSAP)
 
@@ -25,6 +29,8 @@ const Hero = () => {
   const [init, setInit] = useState(false)
   const nameRef = useRef<HTMLDivElement>(null)
   const descRef = useRef<HTMLDivElement>(null)
+
+  const { data: appGlobal } = useSWR(global_fetch_key, getGlobals)
 
   useGSAP(() => {
     gsap.to('#scroll-down', {
@@ -88,7 +94,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <div className="hero" id="#">
+    <div className="hero" id="home">
       <Image
         src={'/highlight.jpg'}
         alt="Highlight"
@@ -112,7 +118,7 @@ const Hero = () => {
             className="text-p1 flex justify-start items-center gap-1 flex-wrap md:gap-1.5"
             ref={descRef}
           >
-            {'Data Science Enthusiast and Full Stack Web Developer.'
+            {appGlobal?.home.home_title
               .split(' ')
               .map((word, index) => (
                 <span dangerouslySetInnerHTML={{ __html: word }} key={index} />
@@ -122,7 +128,7 @@ const Hero = () => {
           <div className="flex flex-row gap-15" id="socials">
             <Tooltip>
               <TooltipTrigger>
-                <Link href="https://www.linkedin.com/in/dripta-senapati-0b1b3b1b3/">
+                <Link href={appGlobal?.home.connect_links.linkedin_link as string}>
                   <CiLinkedin className="text-background-2 text-4xl transition-all duration-700 hover:text-white" />
                 </Link>
               </TooltipTrigger>
@@ -133,7 +139,7 @@ const Hero = () => {
 
             <Tooltip>
               <TooltipTrigger>
-                <Link href="https://www.linkedin.com/in/dripta-senapati-0b1b3b1b3/">
+                <Link href={appGlobal?.home.connect_links.github_link as string}>
                   <FaGithub className="text-background-2 text-4xl transition-all duration-700 hover:text-white" />
                 </Link>
               </TooltipTrigger>
@@ -144,7 +150,7 @@ const Hero = () => {
 
             <Tooltip>
               <TooltipTrigger>
-                <Link href="https://www.linkedin.com/in/dripta-senapati-0b1b3b1b3/">
+                <Link href={appGlobal?.home.connect_links.facebook_link as string}>
                   <CiFacebook className="text-background-2 text-4xl transition-all duration-700 hover:text-white" />
                 </Link>
               </TooltipTrigger>
@@ -154,10 +160,12 @@ const Hero = () => {
             </Tooltip>
           </div>
           <div className="h-[35px]"></div>
-          <AppButton id="resume_download">
-            <PiReadCvLogoFill className="text-white text-3xl" />
-            <span className="text-p1 text-white font-semibold">My Resume</span>
-          </AppButton>
+          <Link href={(appGlobal?.home.resume_doc as Media).url as string} target="_blank">
+            <AppButton id="resume_download">
+              <PiReadCvLogoFill className="text-white text-3xl" />
+              <span className="text-p1 text-white font-semibold">My Resume</span>
+            </AppButton>
+          </Link>
         </div>
       </ContainerBox>
       <div

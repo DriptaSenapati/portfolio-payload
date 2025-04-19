@@ -12,5 +12,16 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    imageSizes: [
+      {
+        name: 'Card',
+        width: 600,
+        height: 400,
+        position: 'center',
+        withoutEnlargement: false,
+      },
+    ],
+    mimeTypes: ['image/*', 'application/pdf'],
+  },
 }
