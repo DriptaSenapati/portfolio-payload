@@ -42,7 +42,7 @@ const ProjectRoute = () => {
       <ContainerBox className="space-y-2">
         <ProjectFilters filterConfig={projectConfig} selectedLabel={selectedLabel} />
         <div className="h-15"></div>
-        <div id="project_list" className="grid grid-cols-2 gap-x-5 gap-y-7">
+        <div id="project_list" className="grid grid-cols-2 gap-x-5 gap-y-7 max-md:grid-cols-1">
           {projectDetails &&
             projectDetails.length > 0 &&
             (selectedLabel === 'all'
