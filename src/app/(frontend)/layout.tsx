@@ -11,6 +11,7 @@ import { getGlobals } from '@/actions/globalActions'
 export async function generateMetadata(): Promise<Metadata> {
   const getGlobalData = await getGlobals()
   return {
+    metadataBase: new URL(process.env.PROD_URL!),
     title: 'Dripta Senapati',
     description: getGlobalData.about.about_myself,
     openGraph: {
