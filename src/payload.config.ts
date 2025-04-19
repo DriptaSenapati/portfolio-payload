@@ -14,9 +14,11 @@ import { Reviews } from './collections/Reviews'
 import { Projects } from './collections/Projects'
 import { Skills } from './collections/Skills'
 import { AppGlobals } from './globals/AppGlobals'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const env = process.env.NODE_ENV
 
 export default buildConfig({
   admin: {
@@ -55,5 +57,14 @@ export default buildConfig({
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
+    vercelBlobStorage({
+      enabled: env === 'production' ? true : false, // Optional, defaults to true
+      // Specify which collections should use Vercel Blob
+      collections: {
+        media: true,
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
 })
