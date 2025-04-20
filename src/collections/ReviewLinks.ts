@@ -7,7 +7,7 @@ const afterOperationHook: CollectionAfterOperationHook = async ({
   req: { payload },
   collection,
 }) => {
-  console.log('called', operation, payload.config.serverURL)
+  console.log('called', operation, process.env.NODE_ENV, result)
   if (operation === 'create') {
     const collectionId = (result as { id: string }).id
 
