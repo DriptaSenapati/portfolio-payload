@@ -71,7 +71,6 @@ const GiveReviewBody = ({ reviewLinkId, targetUserData }: Props) => {
     const deadTimer = moment(targetUserData.expirationTime)
     const diffSec = deadTimer.diff(moment(), 'seconds')
 
-    console.log('timer', deadTimer, moment(), diffSec)
     const mm = Math.floor(diffSec / 60)
       .toString()
       .padStart(2, '0')
