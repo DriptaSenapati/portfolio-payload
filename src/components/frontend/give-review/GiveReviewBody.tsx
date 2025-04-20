@@ -115,7 +115,12 @@ const GiveReviewBody = ({ reviewLinkId }: Props) => {
         {!formExpired && !form.formState.isSubmitSuccessful && (
           <p className="text-background-2 text-sm">{`Form expires in: ${remainingTime}`}</p>
         )}
-        {isLoading && <Loader2 />}
+        {isLoading && (
+          <div className="flex justify-center items-center gap-2 w-full">
+            <Loader2 className="animate-spin" />
+            Getting form data. Please wait...
+          </div>
+        )}
         {!isLoading &&
           (!formExpired && !form.formState.isSubmitSuccessful ? (
             <>

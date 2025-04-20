@@ -5,6 +5,7 @@ export const Reviews: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     hideAPIURL: true,
+    defaultColumns: ['name', 'isAllowed', 'rating', 'feedback'],
   },
   fields: [
     {
@@ -40,6 +41,13 @@ export const Reviews: CollectionConfig = {
       type: 'text',
       label: 'Worked As',
       required: true,
+    },
+    {
+      name: 'isAllowed',
+      label: 'Allowed to show?',
+      required: true,
+      type: 'checkbox',
+      defaultValue: false,
     },
   ],
 }

@@ -7,6 +7,11 @@ const getReviewList = async () => {
 
   const reviewList = await payload.find({
     collection: 'reviews',
+    where: {
+      isAllowed: {
+        equals: true,
+      },
+    },
   })
 
   return reviewList?.docs || []

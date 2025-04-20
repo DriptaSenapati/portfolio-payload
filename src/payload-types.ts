@@ -199,6 +199,7 @@ export interface Review {
   rating: number;
   feedback: string;
   workedAs: string;
+  isAllowed: boolean;
   updatedAt: string;
   createdAt: string;
 }
@@ -403,6 +404,7 @@ export interface ReviewsSelect<T extends boolean = true> {
   rating?: T;
   feedback?: T;
   workedAs?: T;
+  isAllowed?: T;
   updatedAt?: T;
   createdAt?: T;
 }
