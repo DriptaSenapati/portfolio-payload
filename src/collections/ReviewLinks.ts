@@ -4,7 +4,7 @@ import type { CollectionAfterOperationHook } from 'payload'
 const afterOperationHook: CollectionAfterOperationHook = async ({
   operation,
   result,
-  req: { payload },
+  req,
   collection,
 }) => {
   console.log(
@@ -16,9 +16,11 @@ const afterOperationHook: CollectionAfterOperationHook = async ({
   )
   if (operation === 'create') {
     const collectionId = (result as { id: string }).id
+    const { payload } = req
 
     await payload.update({
       collection: collection.slug,
+      req: req,
       where: {
         id: {
           equals: collectionId,
