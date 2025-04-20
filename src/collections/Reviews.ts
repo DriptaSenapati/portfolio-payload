@@ -45,7 +45,6 @@ export const Reviews: CollectionConfig = {
     {
       name: 'isAllowed',
       label: 'Allowed to show?',
-      required: true,
       type: 'checkbox',
       defaultValue: false,
     },

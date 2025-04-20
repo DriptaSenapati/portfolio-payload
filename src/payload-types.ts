@@ -199,7 +199,7 @@ export interface Review {
   rating: number;
   feedback: string;
   workedAs: string;
-  isAllowed: boolean;
+  isAllowed?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
