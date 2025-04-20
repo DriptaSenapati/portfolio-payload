@@ -146,17 +146,22 @@ const GiveReviewBody = ({ reviewLinkId }: Props) => {
                   <FormField
                     control={form.control}
                     name="rating"
-                    render={({ field }) => (
+                    render={({ field: { onChange, ...rest } }) => (
                       <FormItem>
                         <FormLabel required>Rating</FormLabel>
                         <FormControl>
                           <Input
                             type="number"
-                            {...field}
+                            step={'0.1'}
+                            {...rest}
                             required
                             min={1}
                             max={5}
-                            onChange={(val) => field.onChange(parseInt(val.target.value))}
+                            onChange={(val) =>
+                              Boolean(val.target.value)
+                                ? onChange(Number(val.target.value))
+                                : onChange('')
+                            }
                           />
                         </FormControl>
                         <FormDescription>Rating should be between 1 and 5</FormDescription>

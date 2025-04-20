@@ -7,6 +7,7 @@ const afterOperationHook: CollectionAfterOperationHook = async ({ operation, res
     const { payload } = req
 
     const email = await payload.sendEmail({
+      from: `'Portfolio Feedback Submission' <${process.env.FROM_ADDRESS}>`,
       to: process.env.TO_EMAIL,
       subject: `Feedback submitted by ${name}`,
       html: `

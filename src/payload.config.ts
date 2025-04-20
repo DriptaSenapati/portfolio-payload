@@ -60,7 +60,7 @@ export default buildConfig({
   sharp,
   email: nodemailerAdapter({
     defaultFromAddress: process.env.FROM_ADDRESS || '',
-    defaultFromName: 'Portfolio Feedback Submission',
+    defaultFromName: 'Dripta Senapati',
     transport: nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: 465,
