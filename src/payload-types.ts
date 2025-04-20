@@ -74,6 +74,7 @@ export interface Config {
     projects: Project;
     skills: Skill;
     reviewLinks: ReviewLink;
+    emailResponse: EmailResponse;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -87,6 +88,7 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     skills: SkillsSelect<false> | SkillsSelect<true>;
     reviewLinks: ReviewLinksSelect<false> | ReviewLinksSelect<true>;
+    emailResponse: EmailResponseSelect<false> | EmailResponseSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -258,6 +260,25 @@ export interface ReviewLink {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "emailResponse".
+ */
+export interface EmailResponse {
+  id: string;
+  triggeredBy: string;
+  messageResJSON:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -290,6 +311,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'reviewLinks';
         value: string | ReviewLink;
+      } | null)
+    | ({
+        relationTo: 'emailResponse';
+        value: string | EmailResponse;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -459,6 +484,16 @@ export interface ReviewLinksSelect<T extends boolean = true> {
         expirationInterval?: T;
         expirationIntervalUnit?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "emailResponse_select".
+ */
+export interface EmailResponseSelect<T extends boolean = true> {
+  triggeredBy?: T;
+  messageResJSON?: T;
   updatedAt?: T;
   createdAt?: T;
 }

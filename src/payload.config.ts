@@ -16,6 +16,9 @@ import { Skills } from './collections/Skills'
 import { AppGlobals } from './globals/AppGlobals'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { ReviewLinks } from './collections/ReviewLinks'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import nodemailer from 'nodemailer'
+import { EmailResponses } from './collections/EmailResponse'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,7 +47,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Jobs, Reviews, Projects, Skills, ReviewLinks],
+  collections: [Users, Media, Jobs, Reviews, Projects, Skills, ReviewLinks, EmailResponses],
   globals: [AppGlobals],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -55,6 +58,18 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.FROM_ADDRESS || '',
+    defaultFromName: 'Portfolio Feedback Submission',
+    transport: nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: 465,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    }),
+  }),
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder

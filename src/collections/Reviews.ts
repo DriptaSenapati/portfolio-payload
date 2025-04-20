@@ -1,4 +1,38 @@
-import type { CollectionConfig } from 'payload'
+import { Review } from '@/payload-types'
+import type { CollectionAfterOperationHook, CollectionConfig } from 'payload'
+
+const afterOperationHook: CollectionAfterOperationHook = async ({ operation, result, req }) => {
+  if (operation === 'create') {
+    const { name, feedback, rating, workedAs } = result as Review
+    const { payload } = req
+
+    const email = await payload.sendEmail({
+      to: process.env.TO_EMAIL,
+      subject: `Feedback submitted by ${name}`,
+      html: `
+        <div>
+          <h4>Hi, Dripta Senapati</h4>
+          <p>Review Submitted by ${name}. Review details as follows:</p>
+          <b>Rating</b><br />
+          ${rating}<br />
+          <b>Feedback</b><br />
+          ${feedback}<br />
+          <b>Worked As</b><br />
+          ${workedAs}
+        </div>
+      `,
+    })
+
+    await payload.create({
+      collection: 'emailResponse',
+      req: req,
+      data: {
+        triggeredBy: name,
+        messageResJSON: JSON.stringify(email),
+      },
+    })
+  }
+}
 
 export const Reviews: CollectionConfig = {
   slug: 'reviews',
@@ -6,6 +40,9 @@ export const Reviews: CollectionConfig = {
     useAsTitle: 'name',
     hideAPIURL: true,
     defaultColumns: ['name', 'isAllowed', 'rating', 'feedback'],
+  },
+  hooks: {
+    afterOperation: [afterOperationHook],
   },
   fields: [
     {
