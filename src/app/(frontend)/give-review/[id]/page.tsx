@@ -1,8 +1,6 @@
-import { getReviewLinkMetaName, startReviewLinkVisitProcess } from '@/actions/giveReviewActions'
+import { getReviewLinkMetaName } from '@/actions/giveReviewActions'
 import GiveReviewBody from '@/components/frontend/give-review/GiveReviewBody'
 import React from 'react'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { AlertCircle } from 'lucide-react'
 import { Metadata } from 'next'
 
 type Props = {
@@ -37,20 +35,20 @@ export async function generateMetadata({
 
 const page = async ({ params }: Props) => {
   const { id } = await params
-  const verificationResponse = await startReviewLinkVisitProcess(id)
+  // const verificationResponse = await startReviewLinkVisitProcess(id)
 
-  if (!verificationResponse.success) {
-    return (
-      <div className="h-screen w-full flex justify-center items-center">
-        <Alert variant="destructive" className="w-[50vw] max-md:w-[90vw] max-w-[800px]">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Invalid Link</AlertTitle>
-          <AlertDescription>Link is either expired or review already submitted</AlertDescription>
-        </Alert>
-      </div>
-    )
-  }
-  return <GiveReviewBody reviewLinkId={id} targetUserData={verificationResponse.data!} />
+  // if (!verificationResponse.success) {
+  //   return (
+  //     <div className="h-screen w-full flex justify-center items-center">
+  //       <Alert variant="destructive" className="w-[50vw] max-md:w-[90vw] max-w-[800px]">
+  //         <AlertCircle className="h-4 w-4" />
+  //         <AlertTitle>Invalid Link</AlertTitle>
+  //         <AlertDescription>Link is either expired or review already submitted</AlertDescription>
+  //       </Alert>
+  //     </div>
+  //   )
+  // }
+  return <GiveReviewBody reviewLinkId={id} />
 }
 
 export default page
