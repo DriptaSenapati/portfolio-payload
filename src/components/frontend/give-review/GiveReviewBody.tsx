@@ -21,7 +21,7 @@ import { startReviewLinkVisitProcess, submitReview } from '@/actions/giveReviewA
 import { toast } from 'sonner'
 import Link from 'next/link'
 import { ReviewLink } from '@/payload-types'
-import moment from 'moment'
+import moment, { min } from 'moment'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertCircle } from 'lucide-react'
 import useSWR from 'swr'
@@ -39,7 +39,7 @@ type Props = {
 }
 
 const GiveReviewBody = ({ reviewLinkId }: Props) => {
-  const [remainingTime, setRemainingTime] = useState('00:00')
+  const [remainingTime, setRemainingTime] = useState('00:00:00')
   const timer = useRef<NodeJS.Timeout>(null)
   const [formExpired, setFormExpired] = useState(false)
 
@@ -75,14 +75,17 @@ const GiveReviewBody = ({ reviewLinkId }: Props) => {
     const deadTimer = moment(targetUserData?.data?.expirationTime)
     const diffSec = deadTimer.diff(moment(), 'seconds')
 
-    const mm = Math.floor(diffSec / 60)
+    const ss = (diffSec % 60).toString().padStart(2, '0')
+    const minute = Math.floor(diffSec / 60)
+    const hh = Math.floor(minute / 60)
       .toString()
       .padStart(2, '0')
-    const ss = (diffSec % 60).toString().padStart(2, '0')
+    const mm = (minute % 60).toString().padStart(2, '0')
+
     if (diffSec === 0) {
       setFormExpired(true)
     }
-    setRemainingTime(`${mm}:${ss}`)
+    setRemainingTime(`${hh}:${mm}:${ss}`)
   }
 
   useEffect(() => {
@@ -172,13 +175,13 @@ const GiveReviewBody = ({ reviewLinkId }: Props) => {
                           <FormControl>
                             <Textarea
                               required
-                              maxLength={200}
+                              maxLength={370}
                               {...field}
                               className="max-w-[800px]"
                             />
                           </FormControl>
                           <div className="absolute right-0 bottom-0 translate-y-[110%] text-background-2 text-sm">
-                            {feedbackString ? (feedbackString as string).split('').length : 0}/{200}
+                            {feedbackString ? (feedbackString as string).split('').length : 0}/{370}
                           </div>
                         </div>
 

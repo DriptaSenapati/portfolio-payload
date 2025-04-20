@@ -251,7 +251,7 @@ export interface ReviewLink {
   reviewLinkAddress?: string | null;
   expirationConfig: {
     expirationInterval: number;
-    expirationIntervalUnit: 'days' | 'minutes';
+    expirationIntervalUnit: 'hours' | 'minutes' | 'seconds';
   };
   updatedAt: string;
   createdAt: string;

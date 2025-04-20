@@ -90,7 +90,7 @@ export const ReviewLinks: CollectionConfig = {
           label: 'Expiration Interval',
           type: 'number',
           required: true,
-          defaultValue: 30,
+          defaultValue: 48,
         },
         {
           name: 'expirationIntervalUnit',
@@ -99,15 +99,19 @@ export const ReviewLinks: CollectionConfig = {
           required: true,
           options: [
             {
-              label: 'days',
-              value: 'days',
+              label: 'hours',
+              value: 'hours',
             },
             {
               label: 'minutes',
               value: 'minutes',
             },
+            {
+              label: 'seconds',
+              value: 'seconds',
+            },
           ],
-          defaultValue: 'minutes',
+          defaultValue: 'hours',
         },
       ],
     },
