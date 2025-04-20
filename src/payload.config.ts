@@ -15,6 +15,7 @@ import { Projects } from './collections/Projects'
 import { Skills } from './collections/Skills'
 import { AppGlobals } from './globals/AppGlobals'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { ReviewLinks } from './collections/ReviewLinks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -43,7 +44,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Jobs, Reviews, Projects, Skills],
+  collections: [Users, Media, Jobs, Reviews, Projects, Skills, ReviewLinks],
   globals: [AppGlobals],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -1,6 +1,5 @@
-import GiveReviewBody from '@/components/frontend/give-review/GiveReviewBody'
 import { Metadata } from 'next'
-import React from 'react'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Feedback Form | Dripta Senapati',
@@ -8,7 +7,7 @@ export const metadata: Metadata = {
 }
 
 const GiveReview = () => {
-  return <GiveReviewBody />
+  return redirect('/')
 }
 
 export default GiveReview

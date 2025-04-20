@@ -73,6 +73,7 @@ export interface Config {
     reviews: Review;
     projects: Project;
     skills: Skill;
+    reviewLinks: ReviewLink;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +86,7 @@ export interface Config {
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     skills: SkillsSelect<false> | SkillsSelect<true>;
+    reviewLinks: ReviewLinksSelect<false> | ReviewLinksSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -237,6 +239,24 @@ export interface Skill {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviewLinks".
+ */
+export interface ReviewLink {
+  id: string;
+  targetName: string;
+  isLinkVisited: boolean;
+  expirationTime?: string | null;
+  isReviewSubmitted: boolean;
+  reviewLinkAddress?: string | null;
+  expirationConfig: {
+    expirationInterval: number;
+    expirationIntervalUnit: 'days' | 'minutes';
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -265,6 +285,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'skills';
         value: string | Skill;
+      } | null)
+    | ({
+        relationTo: 'reviewLinks';
+        value: string | ReviewLink;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -414,6 +438,25 @@ export interface SkillsSelect<T extends boolean = true> {
   skill?: T;
   skill_type?: T;
   skill_rating?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviewLinks_select".
+ */
+export interface ReviewLinksSelect<T extends boolean = true> {
+  targetName?: T;
+  isLinkVisited?: T;
+  expirationTime?: T;
+  isReviewSubmitted?: T;
+  reviewLinkAddress?: T;
+  expirationConfig?:
+    | T
+    | {
+        expirationInterval?: T;
+        expirationIntervalUnit?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
